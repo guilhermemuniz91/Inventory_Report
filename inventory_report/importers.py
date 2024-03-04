@@ -1,8 +1,25 @@
 from typing import Dict, Type
+from abc import ABC, abstractmethod
+from inventory_report.product import Product
 
 
-class Importer:
-    pass
+class Importer(ABC):
+
+    def __init__(self, path: str):
+        self.path = path
+
+    @abstractmethod
+    def import_data(self) -> list[Product]:
+        """
+        Importa os dados do arquivo para uma lista de produtos.
+
+        Args:
+            path: Caminho do arquivo.
+
+        Returns:
+            Lista de produtos.
+        """
+        pass
 
 
 class JsonImporter:
